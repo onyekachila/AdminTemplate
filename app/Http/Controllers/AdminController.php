@@ -12,8 +12,9 @@ class AdminController extends Controller
         if ($request->isMethod('post')) {
             $data = $request->input();
             if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'admin' => '1'])) {
-                echo 'Sucess';
-                die;
+                // echo 'Sucess';
+                // die;
+                return redirect('/admin/dashboard');
             } else {
                 echo 'Failed';
                 die;
@@ -21,5 +22,10 @@ class AdminController extends Controller
         }
 
         return view('admin.admin_login');
+    }
+
+    public function dashboard()
+    {
+        return view('admin.dashboard');
     }
 }
